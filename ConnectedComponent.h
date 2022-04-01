@@ -7,7 +7,7 @@
 #ifndef	_CONNECTEDCOMPONENT_
 #define _CONNECTEDCOMPONENT_
 #include <iostream>
-#include <vectory>
+#include <vector>
 #include <memory>
 
 

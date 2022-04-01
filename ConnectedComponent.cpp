@@ -30,7 +30,8 @@ namespace MDKTHE015
 
     /*
      * @ConnectedComponent(const ConnectedComponent& object)
-     * This is the copy
+     * This is the copy constructor of the connected componet
+     * class.
      * */
     ConnectedComponent::ConnectedComponent(const ConnectedComponent &object) :
         _identifier(object._identifier), numberOfPixels(object.numberOfPixels), pixelsCoordinates(object.pixelsCoordinates)
