@@ -89,7 +89,7 @@ namespace MDKTHE015
         	*/
         	void printComponentData(const MDKTHE015::ConnectedComponent & theComponent) const;
 	        void printData(void);
-	}
+	};
 }
 
 #endif
