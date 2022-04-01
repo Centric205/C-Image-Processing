@@ -49,6 +49,11 @@ namespace MDKTHE015
         movObject.numberOfPixels = 0;
     }
 
+    /*
+     * @getCoord()
+     * This methods obtains coordinates of a connected
+     * component.
+     * */
     std::vector<std::pair<int, int>> & ConnectedComponent::getCoords()
     {
         return pixelsCoordinates;
