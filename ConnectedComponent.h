@@ -24,8 +24,22 @@ namespace MDKTHE015
 		std::vector<std::pair<int, int>>& getCoords();
 		void addToVector(int row, int col);
 		std::vector<int> pixels;
+
+		void removePixel(int& size);
+		void setPixels(int size);
+		int getNumberofPixels(void);
+		int getID(void);
+		ConnectedComponent();
+		ConnectedComponent(const ConnectedComponent& object);
+		ConnectedComponent(ConnectedComponent&& movObject);
+		ConnectedComponent(int compID, int nPixels, std::vector<std::pair<int, int>> &pixComp);
+		~ConnectedComponent();
+
+		// Overloaded operators
+		friend std::ostream & operator << (std::ostream& out, const ConnectedComponent& rhs);
 		
 	};
+
 }
 
 #endif
