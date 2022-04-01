@@ -37,6 +37,10 @@ namespace MDKTHE015
         _identifier(object._identifier), numberOfPixels(object.numberOfPixels), pixelsCoordinates(object.pixelsCoordinates)
     {}
 
+    /*
+     * @ConnectedComponent(const ConnectedComponent&& moveObject)
+     * This is the move constructor of the connected component class
+     * */
     ConnectedComponent::ConnectedComponent(ConnectedComponent &&movObject) :
         _identifier(std::move(movObject._identifier)), numberOfPixels(std::move(movObject.numberOfPixels)),
         pixelsCoordinates(std::move(movObject.pixelsCoordinates))
