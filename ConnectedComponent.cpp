@@ -59,6 +59,11 @@ namespace MDKTHE015
         return pixelsCoordinates;
     }
 
+    /*
+     * @addToVector(int row, int col)
+     * Adds coordinates of a connectedcomponent when
+     * it found
+     * */
     void ConnectedComponent::addToVector(int row, int col)
     {
         pixelsCoordinates.push_back(std::make_pair(row, col));
