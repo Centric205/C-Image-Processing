@@ -126,6 +126,27 @@ namespace MDKTHE015
         return extractedComponents.size();
     }
 
+    /* iterate - with an iterator - though your container of connected
+       components and filter out (remove) all the components which do not
+       obey the size criteria pass as arguments. The number remaining
+       after this operation should be returned.
+    */
+
+    int PGMimageProcessor::filterComponentsBySize(int minSize, int maxSize)
+    {
+        std::vector<std::unique_ptr<ConnectedComponent>>::iterator it;
+
+        for (it = extractedComponents.begin(); it != extractedComponents.end(); it++)
+        {
+            if ((*it)->getNumberofPixels() >= minSize && (*it)->getNumberofPixels() <= maxSize)
+            {
+                extractedComponents.erase(it);
+            }
+        }
+
+      return extractedComponents.size();
+    }
+
 
     /*
      * Sets all the elements of the array, then feeds it
