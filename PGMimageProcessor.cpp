@@ -6,6 +6,27 @@
 
 namespace MDKTHE015
 {
+    // Constructor with no parameters
+    PGMimageProcessor::PGMimageProcessor()
+    {
+        // Row directions
+        row_direction[0] = -1;
+        row_direction[1] =  1;
+        row_direction[2] =  0;
+        row_direction[3] =  0;
+
+        // Column directions
+        col_direction[0] =  0;
+        col_direction[1] =  0;
+        col_direction[2] =  1;
+        col_direction[3] = -1;
+
+        height = 0;
+        width = 0;
+        graylevel = 0;
+
+    }
+
     /*
      * Sets all the elements of the array, then feeds it
      * "false" elements.
@@ -93,5 +114,7 @@ namespace MDKTHE015
     {
         visits2D[row][col] = true;
     }
+
+
 
 }
