@@ -89,6 +89,10 @@ namespace MDKTHE015
         return _identifier;
     }
 
+    /*
+     * This performs operator overloading
+     * on the '<<' operator
+     * */
     std::ostream & operator << (std::ostream& out, const ConnectedComponent& rhs)
     {
         out << rhs._identifier << ' ' << rhs.numberOfPixels << std::endl;
