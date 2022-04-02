@@ -27,6 +27,56 @@ namespace MDKTHE015
 
     }
 
+    PGMimageProcessor::PGMimageProcessor(std::string filename)
+    {
+        pgmInFile.open(filename, std::ios::binary);
+        std::cout << filename << " in" << std::endl;
+
+        if (!pgmInFile)
+        {
+            std::cout << "FILEEXCEPTION: Could not open file." << std::endl;
+            std::cout << "Correct file name or check directory" << std::endl;
+            exit(1);
+        }
+
+        std::string str;
+        std::getline(pgmInFile, header);
+
+        while (pgmInFile.eof())
+        {
+            std::getline(pgmInFile, str);
+            if (str[0] == '#')
+                fileComments.push_back(str);
+            else
+                break;
+        }
+
+        std::getline(pgmInFile, str);
+        std::stringstream iss (str);
+        iss >> height >> width;
+        std::getline(pgmInFile, str);
+        std::stringstream  is (str);
+        is >> graylevel;
+        pgmInFile >> str;     // empty line
+
+        // Creating 2d dynamic allocated array
+        image2D = new unsigned char *[height];
+        for (int i = 0; i < height; ++i) {
+            image2D[i] = new unsigned char [width];
+        }
+
+        //  Setting dimensions of visited array
+        setVisits(height, width);
+
+        // Array of pixels
+        for (int i = 0; i < height; ++i) {
+            for (int j = 0; j < width; ++j) {
+                pgmInFile >> image2D[i][j];
+            }
+        }
+    }
+
+
     /*
      * Sets all the elements of the array, then feeds it
      * "false" elements.
