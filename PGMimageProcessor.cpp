@@ -85,4 +85,13 @@ namespace MDKTHE015
         }
     }
 
+    /*
+     * Updates the visited pixels on the visits array.
+     * */
+
+    void PGMimageProcessor::updateVisits(int row, int col)
+    {
+        visits2D[row][col] = true;
+    }
+
 }
