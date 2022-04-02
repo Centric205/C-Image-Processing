@@ -33,6 +33,22 @@ namespace MDKTHE015
     }
 
     /*
-     *
+     *  Generates a new image based on the
+     *  threshold and 0
      * */
+    void PGMimageProcessor::generateThreshImage(unsigned char thresh, int minVal)
+    {
+        for (int i = 0; i < height; ++i) {
+            for (int j = 0; j < width; ++j) {
+                if (image2D[i][j] <= thresh && image2D[i][j] > minVal)
+                    threshImage[i][j] = 255;
+
+                else
+                    threshImage[i][j] = 0;
+            }
+        }
+        std::cout << "Hell yeah." << std::endl;
+    }
+
+
 }
