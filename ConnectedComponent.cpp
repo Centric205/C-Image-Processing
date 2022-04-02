@@ -89,6 +89,12 @@ namespace MDKTHE015
         return _identifier;
     }
 
+    std::ostream & operator << (std::ostream& out, const ConnectedComponent& rhs)
+    {
+        out << rhs._identifier << ' ' << rhs.numberOfPixels << std::endl;
+        return out;
+    }
+
     /*
      * @~ConnectedComponent
      * Destructor for the connected component class
