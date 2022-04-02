@@ -79,11 +79,20 @@ namespace MDKTHE015
         return numberOfPixels;
     }
 
+    /*
+     * @getID()
+     * A getter method for the private instance
+     * '_identifier'
+     * */
     int ConnectedComponent::getID()
     {
         return _identifier;
     }
 
+    /*
+     * @~ConnectedComponent
+     * Destructor for the connected component class
+     * */
     ConnectedComponent::~ConnectedComponent()
     {
         if (!pixelsCoordinates.empty())
