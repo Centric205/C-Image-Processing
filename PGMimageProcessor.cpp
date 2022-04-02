@@ -50,5 +50,39 @@ namespace MDKTHE015
         std::cout << "Hell yeah." << std::endl;
     }
 
+    /*
+     * Visits the N/S/E/W neighbours of the current
+     * pixel coordinates.
+     *
+     * */
+
+    void PGMimageProcessor::neighbours(int row, int col)
+    {
+        int nRow, nCol;
+        for (int i = 0; i < (sizeof(row_direction)/sizeof(row_direction[0])); ++i) {
+            nRow = row + row_direction[i];
+            nCol = col + col_direction[i];
+
+            // Fixes the out of bounce exception, meaning our array is no longer BOUNCY, LOL. (>.<)
+            // "Out of bounds" (-.-)
+            if (nRow < 0 || nCol < 0 || nRow >= height || nCol >= width)
+                continue;
+
+            // If visited, skip. Exercising is good.
+            if (visits2D[nRow][nCol])
+                continue;
+
+            // If background(= 0) skip for the 3rd time. 3 skips are better than none \(^.^)/
+            if (threshImage[nRow][nCol] = 0)
+                continue;
+
+            else
+            {
+                rowQ.push(nRow);
+                colQ.push(nCol);
+                visits2D[nRow][nCol] = true;
+            }
+        }
+    }
 
 }
