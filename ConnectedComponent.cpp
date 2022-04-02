@@ -69,6 +69,11 @@ namespace MDKTHE015
         pixelsCoordinates.push_back(std::make_pair(row, col));
     }
 
+    /*
+     * @getNumberofPixels()
+     * A getter method for the private instance
+     * 'numberOfPixels'
+     * */
     int ConnectedComponent::getNumberofPixels()
     {
         return numberOfPixels;
