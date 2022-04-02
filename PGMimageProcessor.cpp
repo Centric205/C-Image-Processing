@@ -76,6 +76,56 @@ namespace MDKTHE015
         }
     }
 
+    /* process the input image to extract all the connected components,
+       based on the supplied threshold (0...255) and excluding any components
+       of less than the minValidSize. The final number of components that
+       you store in your container (after discarding undersized one)
+       must be returned.
+    */
+
+    int PGMimageProcessor::extractComponents(unsigned char threshold, int minValidSize)
+    {
+        generateThreshImage(threshold, minValidSize);
+        int compID = 0;
+
+        for (int row = 0; row < height; ++row) {
+            for (int column = 0; column < width; ++column) {
+                // Puts current coordinates inside a queue and updates the visited array
+                rowQ.push(row);
+                colQ.push(column);
+                updateVisits(row, column);
+
+                while (rowQ.size() > 0)
+                {
+                    // dequeues visited coordinates off the queue
+                    int currentRow = rowQ.front();
+                    rowQ.pop();
+                    int currentCol = colQ.front();
+                    colQ.pop();
+                    unsigned char val = 255;
+
+                    if (threshImage[currentRow][currentCol] == val)
+                    {
+                        entry.addToVector(currentRow, currentCol);
+
+                        neighbours(currentRow, currentCol);
+                        threshImage[currentRow][currentCol] = 0;    // value I chose to show that it has been visited.
+                    }
+                }
+
+                int size = entry.getCoords().size();
+                // CHECK: why didn't it work when you used new?
+                // ANS: Worked when I included a pointer
+                extractedComponents.push_back(
+                        static_cast<std::unique_ptr<MDKTHE015::ConnectedComponent>>(new MDKTHE015::ConnectedComponent((compID + 1),
+                                                                                                                      size,
+                                                                                                                      entry.getCoords())));
+            }
+        }
+        std::cout << "Whats good" << std::endl;
+        return extractedComponents.size();
+    }
+
 
     /*
      * Sets all the elements of the array, then feeds it
