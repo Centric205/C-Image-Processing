@@ -174,6 +174,10 @@ namespace MDKTHE015
         }
     }
 
+    /*
+     * Writes the filtered components to a file to allow
+     * a user to see the changes
+     * */
     bool PGMimageProcessor::writeComponents(const std::string &outFileName)
     {
         floodImage();
@@ -203,6 +207,15 @@ namespace MDKTHE015
         }
 
         return pgmOutFile.good();
+    }
+
+    /*
+     * Getter method for the private instance 'extractedComponents'
+     *
+     * */
+    int PGMimageProcessor::getComponentCount() const
+    {
+        return extractedComponents.size();
     }
 
 
