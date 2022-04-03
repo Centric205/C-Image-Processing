@@ -269,6 +269,18 @@ namespace MDKTHE015
     }
 
     /*
+     * Performs the same thing as the method above. Coded for test purposes.
+     * */
+    void PGMimageProcessor::printData()
+    {
+        std::vector<std::shared_ptr<ConnectedComponent>>::iterator it;
+        for (int i = 0; i < extractedComponents.size(); ++i) {
+            std::cout << extractedComponents[i]->getID() << " " << extractedComponents[i]->getNumberofPixels() << std::endl;
+         }
+    }
+
+
+    /*
      * Sets all the elements of the array, then feeds it
      * "false" elements.
      * */
@@ -354,6 +366,27 @@ namespace MDKTHE015
     void PGMimageProcessor::updateVisits(int row, int col)
     {
         visits2D[row][col] = true;
+    }
+
+    // Destructor
+    PGMimageProcessor::~PGMimageProcessor()
+    {
+        for (int i = 0; i < height; ++i) {
+            delete [] threshImage[i];
+        }
+        delete [] threshImage;
+
+        // Frees visited bool of arrays
+        for (int i = 0; i < height; ++i) {
+            delete [] visits2D[i];
+        }
+        delete [] visits2D;
+
+        // Releases memory from image2D
+        for (int i = 0; i < height; ++i) {
+            delete [] image2D[i];
+        }
+        delete [] image2D;
     }
 
 
