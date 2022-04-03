@@ -211,13 +211,32 @@ namespace MDKTHE015
 
     /*
      * Getter method for the private instance 'extractedComponents'
-     *
+     * returns number of components
      * */
     int PGMimageProcessor::getComponentCount() const
     {
         return extractedComponents.size();
     }
 
+    // returns number of pixels in smallest component
+    int PGMimageProcessor::getSmallestSize() const
+    {
+        std::vector<std::unique_ptr<ConnectedComponent>>::iterator it;
+
+        int temp = extractedComponents[0]->getNumberofPixels();
+        for (int i = 0; i < extractedComponents.size(); ++i) {
+            if (temp > extractedComponents[i]->getNumberofPixels())
+                temp = extractedComponents[i]->getNumberofPixels();
+
+            if (temp < extractedComponents[i]->getNumberofPixels())
+                continue;
+
+            if (temp = extractedComponents[i]->getNumberofPixels())
+                continue;
+
+        }
+    return temp;
+    }
 
     /*
      * Sets all the elements of the array, then feeds it
