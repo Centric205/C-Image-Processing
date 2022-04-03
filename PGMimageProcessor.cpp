@@ -147,6 +147,33 @@ namespace MDKTHE015
       return extractedComponents.size();
     }
 
+    /*
+     * Updates the image2D with 255 for coordinates
+     * contained within each component
+     *
+     * */
+
+    void PGMimageProcessor::floodImage()
+    {
+        std::vector<std::unique_ptr<ConnectedComponent>>::iterator it;
+
+        // Floods it with foreground (= 255)
+        for (it = extractedComponents.begin(); it != extractedComponents.end(); it++)
+        {
+            for (int i = 0; i < (*it)->getNumberofPixels(); ++i) {
+                image2D[(*it)->getCoords()[i].first][(*it)->getCoords()[i].second] = 255;
+            }
+        }
+
+        // Floods it with background (= 0)
+        for (int row = 0; row < height; ++row) {
+            for (int col = 0; col < width; ++col) {
+                if (image2D[row][col] != 255)
+                    image2D[row][col] = 0;
+            }
+        }
+    }
+
 
     /*
      * Sets all the elements of the array, then feeds it
