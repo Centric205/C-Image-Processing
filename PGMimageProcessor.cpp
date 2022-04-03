@@ -53,7 +53,7 @@ namespace MDKTHE015
 
         std::getline(pgmInFile, str);
         std::stringstream iss (str);
-        iss >> height >> width;
+        iss >> width >> height;
         std::getline(pgmInFile, str);
         std::stringstream  is (str);
         is >> graylevel;
@@ -172,6 +172,37 @@ namespace MDKTHE015
                     image2D[row][col] = 0;
             }
         }
+    }
+
+    bool PGMimageProcessor::writeComponents(const std::string &outFileName)
+    {
+        floodImage();
+        pgmOutFile.open(outFileName, std::ios::binary);
+        if (!pgmOutFile)
+        {
+            std::cout << "FILEEXCEPTION: Could not open file." << std::endl;
+            std::cout << "Correct file name, or check directory" << std::endl;
+        }
+
+        pgmOutFile << header << std::endl;
+        pgmOutFile << width << ' ' << height << std::endl;
+        pgmOutFile << graylevel << std::endl;
+
+        for (int row = 0; row < height; ++row) {
+            for (int col = 0; col < width; ++col) {
+                pgmOutFile << image2D[row][col];
+
+                // Creates ws between pixels
+                if (col != width)
+                    pgmOutFile << ' ';
+
+                // Adds '\n' at the end of the last pixel
+                else
+                    pgmOutFile << std::endl;
+            }
+        }
+
+        return pgmOutFile.good();
     }
 
 
