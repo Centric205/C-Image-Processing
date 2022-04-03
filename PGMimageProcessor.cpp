@@ -257,6 +257,17 @@ namespace MDKTHE015
         return temp;
     }
 
+    /* print the data for a component to std::cout
+       see ConnectedComponent class;
+       print out to std::cout: component ID, number of pixels
+    */
+
+    void PGMimageProcessor::printComponentData(const MDKTHE015::ConnectedComponent &theComponent) const
+    {
+        // Edit this method to print the data of the component if you have not yet overloaded it.
+        std::cout << theComponent;
+    }
+
     /*
      * Sets all the elements of the array, then feeds it
      * "false" elements.
