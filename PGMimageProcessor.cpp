@@ -238,6 +238,25 @@ namespace MDKTHE015
     return temp;
     }
 
+    // returns number of pixels in the largest component
+    int PGMimageProcessor::getLargestSize() const
+    {
+        std::vector<std::unique_ptr<ConnectedComponent>>::iterator it;
+
+        int temp = extractedComponents[0]->getNumberofPixels();
+        for (int i = 0; i < extractedComponents.size(); ++i) {
+            if (temp > extractedComponents[i]->getNumberofPixels())
+                continue;
+
+            else if (temp < extractedComponents[i]->getNumberofPixels())
+                temp = extractedComponents[i]->getNumberofPixels();
+
+            else if (temp = extractedComponents[i]->getNumberofPixels())
+                continue;
+        }
+        return temp;
+    }
+
     /*
      * Sets all the elements of the array, then feeds it
      * "false" elements.
