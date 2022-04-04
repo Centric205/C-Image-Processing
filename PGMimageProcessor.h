@@ -88,6 +88,8 @@ namespace MDKTHE015
                 print out to std::cout: component ID, number of pixels
              */
              void printComponentData(const MDKTHE015::ConnectedComponent & theComponent) const;
+
+             // Print component data with the aid of the above function
              void printData(void) const;
 	};
 }
