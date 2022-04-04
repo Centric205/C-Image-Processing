@@ -21,6 +21,7 @@ namespace MDKTHE015
         pixelsCoordinates = pixComp;
     }
 
+    ConnectedComponent::ConnectedComponent(int compID ) : _identifier(compID) , numberOfPixels(0){}
     /*
      * @ConnectedComponent()
      * Will allow an instance of the Connected Component class
@@ -36,6 +37,29 @@ namespace MDKTHE015
     ConnectedComponent::ConnectedComponent(const ConnectedComponent &object) :
         _identifier(object._identifier), numberOfPixels(object.numberOfPixels), pixelsCoordinates(object.pixelsCoordinates)
     {}
+
+    // Copy Assignment operator
+    ConnectedComponent &ConnectedComponent::operator=(const ConnectedComponent &rhs)
+    {
+        if (this != &rhs)
+        {
+             numberOfPixels = rhs.numberOfPixels;
+             _identifier = rhs._identifier;
+             pixelsCoordinates = rhs.pixelsCoordinates;
+        }
+
+        return *this;
+    }
+
+    // Move assignment operator
+    ConnectedComponent &ConnectedComponent::operator=(const ConnectedComponent &&rhs)
+    {
+        numberOfPixels = std::move(rhs.numberOfPixels);
+        _identifier = std::move(rhs._identifier);
+        pixelsCoordinates = std::move(rhs.pixelsCoordinates);
+
+        return *this;
+    }
 
     /*
      * @ConnectedComponent(const ConnectedComponent&& moveObject)
@@ -67,6 +91,7 @@ namespace MDKTHE015
     void ConnectedComponent::addToVector(int row, int col)
     {
         pixelsCoordinates.push_back(std::make_pair(row, col));
+        numberOfPixels++;
     }
 
     /*
@@ -95,7 +120,8 @@ namespace MDKTHE015
      * */
     std::ostream & operator << (std::ostream& out, const ConnectedComponent& rhs)
     {
-        out << rhs._identifier << ' ' << rhs.numberOfPixels << std::endl;
+
+        out << "| "<< rhs._identifier <<"\t" << "| " << rhs.numberOfPixels << std::endl;
         return out;
     }
 

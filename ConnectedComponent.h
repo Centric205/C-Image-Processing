@@ -30,7 +30,10 @@ namespace MDKTHE015
 		int getNumberofPixels(void);
 		int getID(void);
 		ConnectedComponent();
+        ConnectedComponent(int compID );
 		ConnectedComponent(const ConnectedComponent& object);
+        ConnectedComponent& operator=(const ConnectedComponent& rhs);
+        ConnectedComponent& operator=(const ConnectedComponent&& rhs);
 		ConnectedComponent(ConnectedComponent&& movObject);
 		ConnectedComponent(int compID, int nPixels, std::vector<std::pair<int, int>> &pixComp);
 		~ConnectedComponent();
