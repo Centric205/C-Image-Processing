@@ -29,7 +29,7 @@ namespace MDKTHE015
             bool ** visits2D;
             std::queue<int> rowQ;
             std::queue<int> colQ;
-            std::vector<std::unique_ptr<ConnectedComponent>> extractedComponents;
+            std::vector<std::shared_ptr<ConnectedComponent>> extractedComponents;
             MDKTHE015::ConnectedComponent entry;
 
 	    public:
@@ -88,7 +88,7 @@ namespace MDKTHE015
                 print out to std::cout: component ID, number of pixels
              */
              void printComponentData(const MDKTHE015::ConnectedComponent & theComponent) const;
-             void printData(void);
+             void printData(void) const;
 	};
 }
 
